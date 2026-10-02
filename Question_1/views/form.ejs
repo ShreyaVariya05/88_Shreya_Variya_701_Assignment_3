@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>User Registration</title>
+</head>
+
+<body>
+
+    <h2>User Registration Form</h2>
+
+    <% if (errors.length > 0) { %>
+
+        <div>
+
+            <h3>Errors:</h3>
+
+            <ul>
+
+                <% errors.forEach(error => { %>
+
+                    <li><%= error.msg %></li>
+
+                <% }) %>
+
+            </ul>
+
+        </div>
+
+    <% } %>
+
+
+    <form action="/register" method="POST" enctype="multipart/form-data">
+
+        <!-- Username -->
+
+        <label>Username:</label>
+
+        <input
+            type="text"
+            name="username"
+            value="<%= old.username || '' %>"
+        >
+
+        <br><br>
+
+
+        <!-- Password -->
+
+        <label>Password:</label>
+
+        <input
+            type="password"
+            name="password"
+        >
+
+        <br><br>
+
+
+        <!-- Confirm Password -->
+
+        <label>Confirm Password:</label>
+
+        <input
+            type="password"
+            name="confirmPassword"
+        >
+
+        <br><br>
+
+
+        <!-- Email -->
+
+        <label>Email:</label>
+
+        <input
+            type="text"
+            name="email"
+            value="<%= old.email || '' %>"
+        >
+
+        <br><br>
+
+
+        <!-- Gender -->
+
+        <label>Gender:</label>
+
+        <input
+            type="radio"
+            name="gender"
+            value="Male"
+            <%= old.gender === "Male" ? "checked" : "" %>
+        >
+        Male
+
+        <input
+            type="radio"
+            name="gender"
+            value="Female"
+            <%= old.gender === "Female" ? "checked" : "" %>
+        >
+        Female
+
+        <br><br>
+
+
+        <!-- Hobbies -->
+
+        <label>Hobbies:</label>
+
+        <input
+            type="checkbox"
+            name="hobbies"
+            value="Reading"
+            <%= Array.isArray(old.hobbies) && old.hobbies.includes("Reading") ? "checked" : "" %>
+        >
+        Reading
+
+        <input
+            type="checkbox"
+            name="hobbies"
+            value="Music"
+            <%= Array.isArray(old.hobbies) && old.hobbies.includes("Music") ? "checked" : "" %>
+        >
+        Music
+
+        <input
+            type="checkbox"
+            name="hobbies"
+            value="Sports"
+            <%= Array.isArray(old.hobbies) && old.hobbies.includes("Sports") ? "checked" : "" %>
+        >
+        Sports
+
+        <br><br>
+
+
+        <!-- Profile Picture -->
+
+        <label>Profile Picture:</label>
+
+        <input
+            type="file"
+            name="profilePic"
+            accept=".jpg,.jpeg,.png"
+        >
+
+        <br><br>
+
+
+        <!-- Other Pictures -->
+
+        <label>Other Pictures:</label>
+
+        <input
+            type="file"
+            name="otherPics"
+            multiple
+            accept=".jpg,.jpeg,.png"
+        >
+
+        <br><br>
+
+
+        <button type="submit">
+            Register
+        </button>
+
+    </form>
+
+</body>
+
+</html>

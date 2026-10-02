@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registration Result</title>
+</head>
+
+<body>
+
+    <h2>Registration Details</h2>
+
+    <table border="1" cellpadding="10">
+
+        <tr>
+            <th>Field</th>
+            <th>Value</th>
+        </tr>
+
+        <tr>
+            <td>Username</td>
+            <td><%= user.username %></td>
+        </tr>
+
+        <tr>
+            <td>Email</td>
+            <td><%= user.email %></td>
+        </tr>
+
+        <tr>
+            <td>Gender</td>
+            <td><%= user.gender %></td>
+        </tr>
+
+        <tr>
+            <td>Hobbies</td>
+            <td>
+                <%= Array.isArray(user.hobbies)
+                    ? user.hobbies.join(", ")
+                    : user.hobbies
+                %>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Profile Picture</td>
+
+            <td>
+
+                <% if (profilePic) { %>
+
+                    <img
+                        src="/uploads/<%= profilePic %>"
+                        width="150"
+                    >
+
+                    <br>
+
+                    <a href="/download/<%= profilePic %>">
+                        Download Profile Picture
+                    </a>
+
+                <% } else { %>
+
+                    No image
+
+                <% } %>
+
+            </td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>Other Pictures</td>
+
+            <td>
+
+                <% if (otherPics.length > 0) { %>
+
+                    <% otherPics.forEach(pic => { %>
+
+                        <div>
+
+                            <img
+                                src="/uploads/<%= pic %>"
+                                width="150"
+                            >
+
+                            <br>
+
+                            <a href="/download/<%= pic %>">
+                                Download
+                            </a>
+
+                        </div>
+
+                        <br>
+
+                    <% }) %>
+
+                <% } else { %>
+
+                    No other pictures
+
+                <% } %>
+
+            </td>
+
+        </tr>
+
+    </table>
+
+    <br>
+
+    <a href="/">
+        Back to Registration
+    </a>
+
+</body>
+
+</html>
